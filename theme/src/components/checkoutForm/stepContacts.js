@@ -12,6 +12,11 @@ const validateEmail = value =>
 		? text.emailInvalid
 		: undefined;
 
+const validatePostalCode = value =>
+	value && !/^[1-9][0-9][0-9][0-9][0-9]$/i.test(value)
+		? text.postalCodeInvalid
+		: undefined;
+
 const ReadOnlyField = ({ name, value }) => {
 	return (
 		<div className="checkout-field-preview">
@@ -53,6 +58,8 @@ class CheckoutStepContacts extends React.Component {
 		}
 		if (fieldName === 'email') {
 			validatorsArray.push(validateEmail);
+		} else if (fieldName === 'postal_code') {
+			validatorsArray.push(validatePostalCode);
 		}
 
 		return validatorsArray;
@@ -71,6 +78,9 @@ class CheckoutStepContacts extends React.Component {
 			return field.label;
 		} else {
 			switch (fieldName) {
+				case 'full_name':
+					return text.fullName;
+					break;
 				case 'email':
 					return text.email;
 					break;
@@ -85,6 +95,12 @@ class CheckoutStepContacts extends React.Component {
 					break;
 				case 'city':
 					return text.city;
+					break;
+				case 'address1':
+					return text.shippingAddress;
+					break;
+				case 'postal_code':
+					return text.postal_code;
 					break;
 				default:
 					return 'Unnamed field';
@@ -132,6 +148,9 @@ class CheckoutStepContacts extends React.Component {
 						{title}
 					</h1>
 
+					{!this.isFieldHidden('full_name') && (
+						<ReadOnlyField name={text.fullName} value={initialValues.shipping_address.full_name} />
+					)}
 					{!this.isFieldHidden('email') && (
 						<ReadOnlyField name={text.email} value={initialValues.email} />
 					)}
@@ -154,6 +173,18 @@ class CheckoutStepContacts extends React.Component {
 						<ReadOnlyField
 							name={text.city}
 							value={initialValues.shipping_address.city}
+						/>
+					)}
+					{!this.isFieldHidden('address1') && (
+						<ReadOnlyField
+							name={text.shippingAddress}
+							value={initialValues.shipping_address.address1}
+						/>
+					)}
+					{!this.isFieldHidden('postal_code') && (
+						<ReadOnlyField
+							name={text.postal_code}
+							value={initialValues.shipping_address.postal_code}
 						/>
 					)}
 					<ReadOnlyField
@@ -184,6 +215,22 @@ class CheckoutStepContacts extends React.Component {
 						{title}
 					</h1>
 					<form onSubmit={handleSubmit}>
+						{!this.isFieldHidden('full_name') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.full_name"
+								id="shipping_address.full_name"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('full_name')}
+								validate={this.getFieldValidators('full_name')}
+								placeholder={this.getFieldPlaceholder('full_name')}
+								onBlur={(event, value) =>
+									setTimeout(() => saveShippingLocation({ full_name: value }))
+								}
+							/>
+						)}
+
 						{!this.isFieldHidden('email') && (
 							<Field
 								className={inputClassName}
@@ -260,6 +307,38 @@ class CheckoutStepContacts extends React.Component {
 							/>
 						)}
 
+						{!this.isFieldHidden('address1') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.address1"
+								id="shipping_address.address1"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('address1')}
+								validate={this.getFieldValidators('address1')}
+								placeholder={this.getFieldPlaceholder('address1')}
+								onBlur={(event, value) =>
+									setTimeout(() => saveShippingLocation({ address1: value }))
+								}
+							/>
+						)}
+
+						{!this.isFieldHidden('postal_code') && (
+							<Field
+								className={inputClassName}
+								name="shipping_address.postal_code"
+								id="shipping_address.postal_code"
+								component={InputField}
+								type="text"
+								label={this.getFieldLabel('postal_code')}
+								validate={this.getFieldValidators('postal_code')}
+								placeholder={this.getFieldPlaceholder('postal_code')}
+								onBlur={(event, value) =>
+									setTimeout(() => saveShippingLocation({ postal_code: value }))
+								}
+							/>
+						)}
+
 						<h2>
 							{text.shippingMethods}{' '}
 							{loadingShippingMethods && <small>{text.loading}</small>}
@@ -277,6 +356,7 @@ class CheckoutStepContacts extends React.Component {
 								>
 									<Field
 										name="shipping_method_id"
+										validate={[validateRequired]}
 										component="input"
 										type="radio"
 										value={method.id}

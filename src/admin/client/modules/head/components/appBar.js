@@ -300,6 +300,17 @@ export default class AppBarTop extends React.Component {
 					</IconButton>
 				</Link>
 			);
+		} else if (pathname === '/admin/settings/checkout/fields/full_name') {
+			title = messages.fullName;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
 		} else if (pathname === '/admin/settings/checkout/fields/mobile') {
 			title = messages.mobile;
 			leftButton = (
@@ -335,6 +346,17 @@ export default class AppBarTop extends React.Component {
 			);
 		} else if (pathname === '/admin/settings/checkout/fields/city') {
 			title = messages.city;
+			leftButton = (
+				<Link to="/admin/settings/checkout">
+					<IconButton>
+						<FontIcon color="#fff" className="material-icons">
+							arrow_back
+						</FontIcon>
+					</IconButton>
+				</Link>
+			);
+		} else if (pathname === '/admin/settings/checkout/fields/address1') {
+			title = messages.shippingAddress;
 			leftButton = (
 				<Link to="/admin/settings/checkout">
 					<IconButton>

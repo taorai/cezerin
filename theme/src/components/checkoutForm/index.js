@@ -48,27 +48,27 @@ export default class CheckoutForm extends React.Component {
 	handleLocationSave = shippingLocation => {
 		this.props.updateShippingAddress(shippingLocation);
 		this.props.updateBillingAddress(shippingLocation);
-		this.props.updateCart(
-			{
-				payment_method_id: null,
-				shipping_method_id: null
-			},
-			cart => {
-				this.props.loadShippingMethods();
-				this.props.loadPaymentMethods();
-			}
-		);
+		// this.props.updateCart(
+		// 	{
+		// 		payment_method_id: null,
+		// 		shipping_method_id: null
+		// 	},
+		// 	cart => {
+		// 		this.props.loadShippingMethods();
+		// 		this.props.loadPaymentMethods();
+		// 	}
+		// );
 	};
 
 	handleShippingMethodSave = shippingMethodId => {
 		this.props.updateCart(
 			{
-				payment_method_id: null,
+				// payment_method_id: null,
 				shipping_method_id: shippingMethodId
-			},
-			cart => {
-				this.props.loadPaymentMethods();
 			}
+			// cart => {
+			// 	this.props.loadPaymentMethods();
+			// }
 		);
 	};
 
@@ -137,7 +137,7 @@ export default class CheckoutForm extends React.Component {
 				<div className="checkout-form">
 					<CheckoutStepContacts
 						isReadOnly={step > 1}
-						title={text.customerDetails}
+						title={text.orderDetails}
 						inputClassName={checkoutInputClass}
 						buttonClassName={checkoutButtonClass}
 						editButtonClassName={checkoutEditButtonClass}
@@ -158,7 +158,7 @@ export default class CheckoutForm extends React.Component {
 					<CheckoutStepShipping
 						show={step >= 2}
 						isReadOnly={step > 2}
-						title={text.shipping}
+						title={text.orderNote}
 						inputClassName={checkoutInputClass}
 						buttonClassName={checkoutButtonClass}
 						editButtonClassName={checkoutEditButtonClass}
