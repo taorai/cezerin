@@ -101,7 +101,7 @@ const OrdersListItem = ({ order, onSelect, selected, settings }) => {
 	const dateCreated = moment(order.date_placed || order.date_created);
 	const dateCreatedFromNow = dateCreated.format(`${settings.date_format}`);
 	let shippingTo = order.shipping_address
-		? order.shipping_address.full_name
+		? order.shipping_address.full_name + " - " + order.mobile
 		: '';
 
 	return (
@@ -128,12 +128,12 @@ const OrdersListItem = ({ order, onSelect, selected, settings }) => {
 						</div>
 						<div className="col-xs-4">
 							<div className={style.shipping}>{shippingTo}</div>
-							<small className={style.small}>{order.shipping_method}</small>
+							<small className={style.small}>{order.shipping_address.address1 + " " + order.shipping_address.city
+							 + " " + order.shipping_address.state + " " + order.shipping_address.postal_code}</small>
 						</div>
 						<div className={'col-xs-2 ' + style.price}>
 							{grandTotalFormatted}
-							<br />
-							<small className={style.small}>{order.payment_method}</small>
+
 						</div>
 						<div className={'col-xs-2 ' + style.status}>{order.status}</div>
 					</div>

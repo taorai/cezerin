@@ -13,6 +13,16 @@ const getCheckoutField = (checkoutFields, fieldName) => {
 	}
 };
 
+const FullNameField = ({ order, checkoutFields }) => {
+	const checkoutField = getCheckoutField(checkoutFields, 'full_name');
+	return checkoutField && order.shipping_address.full_name !== '' ? (
+		<ShippingFieldDiv
+			label={helper.getCheckoutFieldLabel(checkoutField)}
+			value={order.shipping_address.full_name}
+		/>
+	) : null;
+};
+
 const MobileField = ({ order, checkoutFields }) => {
 	const checkoutField = getCheckoutField(checkoutFields, 'mobile');
 	return checkoutField && order.mobile !== '' ? (
@@ -23,12 +33,42 @@ const MobileField = ({ order, checkoutFields }) => {
 	) : null;
 };
 
+const StateField = ({ order, checkoutFields }) => {
+	const checkoutField = getCheckoutField(checkoutFields, 'state');
+	return checkoutField && order.shipping_address.state !== '' ? (
+		<ShippingFieldDiv
+			label={helper.getCheckoutFieldLabel(checkoutField)}
+			value={order.shipping_address.state}
+		/>
+	) : null;
+};
+
 const CityField = ({ order, checkoutFields }) => {
 	const checkoutField = getCheckoutField(checkoutFields, 'city');
 	return checkoutField && order.shipping_address.city !== '' ? (
 		<ShippingFieldDiv
 			label={helper.getCheckoutFieldLabel(checkoutField)}
 			value={order.shipping_address.city}
+		/>
+	) : null;
+};
+
+const Address1Field = ({ order, checkoutFields }) => {
+	const checkoutField = getCheckoutField(checkoutFields, 'address1');
+	return checkoutField && order.shipping_address.address1 !== '' ? (
+		<ShippingFieldDiv
+			label={helper.getCheckoutFieldLabel(checkoutField)}
+			value={order.shipping_address.address1}
+		/>
+	) : null;
+};
+
+const PostalCodeField = ({ order, checkoutFields }) => {
+	const checkoutField = getCheckoutField(checkoutFields, 'postal_code');
+	return checkoutField && order.shipping_address.postal_code !== '' ? (
+		<ShippingFieldDiv
+			label={helper.getCheckoutFieldLabel(checkoutField)}
+			value={order.shipping_address.postal_code}
 		/>
 	) : null;
 };
@@ -105,7 +145,7 @@ const CheckoutSuccess = ({
 	shippingMethod,
 	checkoutFields
 }) => {
-	if (order && order.items && order.items.length > 0) {
+	if (order && order.items && order.items.length > 0) {console.dir(order);
 		return (
 			<div className="checkout-success-details">
 				<h1 className="checkout-success-title">
@@ -124,9 +164,13 @@ const CheckoutSuccess = ({
 
 				<div className="columns" style={{ marginBottom: '3rem' }}>
 					<div className="column is-6">
-						<b>{text.shipping}</b>
+						<b>{text.shippingAdress}</b>
+						<FullNameField order={order} checkoutFields={checkoutFields} />
 						<MobileField order={order} checkoutFields={checkoutFields} />
+						<StateField order={order} checkoutFields={checkoutFields} />
 						<CityField order={order} checkoutFields={checkoutFields} />
+						<Address1Field order={order} checkoutFields={checkoutFields} />
+						<PostalCodeField order={order} checkoutFields={checkoutFields} />
 						<ShippingFields order={order} shippingMethod={shippingMethod} />
 						<CommentsField order={order} checkoutFields={checkoutFields} />
 					</div>
@@ -136,7 +180,7 @@ const CheckoutSuccess = ({
 						<br />
 						<b>{text.shippingMethod}</b>: {order.shipping_method}
 						<br />
-						<b>{text.paymentMethod}</b>: {order.payment_method}
+						<b>{text.paymentMethod}</b>:<br/> {order.payment_method}
 						<br />
 					</div>
 				</div>

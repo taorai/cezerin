@@ -342,7 +342,7 @@ export function fetchOrder(orderId) {
 			.then(order => {
 				dispatch(receiveOrder(order));
 			})
-			.catch(error => {});
+			.catch(error => {console.log(error);});
 	};
 }
 
