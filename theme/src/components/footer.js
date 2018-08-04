@@ -22,7 +22,7 @@ class FooterMenu extends React.Component {
 		if (items && items.length > 0) {
 			ulItems = items.map((item, index) => (
 				<li key={index}>
-					<NavLink to={item.url || ''}>{item.text}</NavLink>
+					<a href={item.url}>{item.text}</a>
 				</li>
 			));
 		}

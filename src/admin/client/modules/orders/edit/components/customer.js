@@ -52,17 +52,15 @@ const ShippingAddress = ({ order, settings }) => {
 	return (
 		<div className={style.address} style={{ marginBottom: 20 }}>
 			<ShippingFields order={order} shippingMethod={shippingMethod} />
-			<div>
-				<label>{messages.city}: </label>
-				{address.city}
-				{address.state && address.state.length > 0 ? ', ' + address.state : ''}
-				{address.postal_code && address.postal_code.length > 0
-					? ', ' + address.postal_code
-					: ''}
-			</div>
-			<div>
-				<label>{messages.country}: </label>
-				{address.country}
+			<div className={style.address}>
+				<div>{address.full_name}</div>
+				<div>{address.address1}</div>
+				<div>
+					{address.city},{' '}
+					{address.state},{' '}
+					{address.postal_code}
+				</div>
+				<div>{address.phone}</div>
 			</div>
 		</div>
 	);
@@ -180,7 +178,7 @@ export default class OrderCustomer extends React.Component {
 									to={`/admin/customer/${order.customer_id}`}
 									className={style.link}
 								>
-									{order.customer && order.customer.full_name}
+									{order.shipping_address.full_name}
 								</Link>
 							</div>
 							<div>
@@ -216,11 +214,7 @@ export default class OrderCustomer extends React.Component {
 							<FlatButton label="View map" />
 						</a>
 
-						<BillingAddress
-							address={order.billing_address}
-							settings={settings}
-						/>
-
+						
 						<Dialog
 							title={messages.shippingAddress}
 							modal={false}

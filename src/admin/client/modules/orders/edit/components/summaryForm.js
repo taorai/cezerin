@@ -66,7 +66,9 @@ class SummaryForm extends React.Component {
 			onCancel
 		} = this.props;
 
-		const statusItems = this.state.orderStatuses.map((item, index) => (
+		const statusItems = this.state.orderStatuses
+			.sort((a, b) => (a.name.substring(0, 4).localeCompare(b.name.substring(0, 4))))
+			.map((item, index) => (
 			<MenuItem key={index} value={item.id} primaryText={item.name} />
 		));
 		const shippingItems = this.state.shippingMethods.map((item, index) => (

@@ -70,12 +70,25 @@ class ShippingAddressForm extends React.Component {
 			<form onSubmit={handleSubmit}>
 				<div>
 					{shippingFields}
-					<Field
-						component={TextField}
-						fullWidth={true}
-						name="city"
-						floatingLabelText={messages.city}
-					/>
+					<div className="row">
+						<div className="col-xs-6">
+							<Field
+								component={TextField}
+								fullWidth={true}
+								name="address1"
+								floatingLabelText={messages.shippingAddress}
+							/>
+						</div>
+						<div className="col-xs-6">
+							<Field
+								component={TextField}
+								fullWidth={true}
+								name="city"
+								floatingLabelText={messages.city}
+							/>
+						</div>
+					</div>
+					
 					<div className="row">
 						<div className="col-xs-6">
 							<Field
@@ -94,12 +107,7 @@ class ShippingAddressForm extends React.Component {
 							/>
 						</div>
 					</div>
-					<Field
-						component={TextField}
-						fullWidth={true}
-						name="country"
-						floatingLabelText={messages.country}
-					/>
+					
 				</div>
 				<div className={style.shippingButtons}>
 					<FlatButton label={messages.cancel} onClick={onCancel} />

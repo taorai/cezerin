@@ -68,9 +68,12 @@
   "emptyCheckout": "Your cart is empty",
   "required": "This field is required.",
   "emailInvalid": "Please enter a valid email address.",
+  "postalCodeInvalid": "Please enter a valid postal code.",
   "sameAsShipping": "Same as shipping address",
   "edit": "Edit",
   "next": "Next",
   "customerDetails": "Customer Details",
+  "orderDetails": "Order Details",
+  "orderNote": "Order Note",
   "payment": "Payment"
 }

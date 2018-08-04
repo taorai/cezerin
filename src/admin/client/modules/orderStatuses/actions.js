@@ -72,7 +72,8 @@ function fetchStatuses() {
 		return api.orderStatuses
 			.list()
 			.then(({ status, json }) => {
-				json = json.sort((a, b) => a.position - b.position);
+				// json = json.sort((a, b) => a.position - b.position);
+				json = json.sort((a, b) => (a.name.substring(0, 4).localeCompare(b.name.substring(0, 4))));
 
 				json.forEach((element, index, theArray) => {
 					if (theArray[index].name === '') {

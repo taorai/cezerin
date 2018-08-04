@@ -70,6 +70,11 @@ export default class EmailSettings extends React.Component {
 					<div style={{ width: '100%' }}>
 						<List style={{ padding: 0 }}>
 							<CheckoutFieldItem
+								name={messages.fullName}
+								status={this.getFieldStatus('full_name')}
+								path="full_name"
+							/>
+							<CheckoutFieldItem
 								name={messages.email}
 								status={this.getFieldStatus('email')}
 								path="email"
@@ -93,6 +98,16 @@ export default class EmailSettings extends React.Component {
 								name={messages.city}
 								status={this.getFieldStatus('city')}
 								path="city"
+							/>
+							<CheckoutFieldItem
+								name={messages.shippingAddress}
+								status={this.getFieldStatus('address1')}
+								path="address1"
+							/>
+							<CheckoutFieldItem
+								name={messages.postal_code}
+								status={this.getFieldStatus('postal_code')}
+								path="postal_code"
 							/>
 							<CheckoutFieldItem
 								name={messages.customerComment}

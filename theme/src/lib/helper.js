@@ -126,7 +126,7 @@ export const getFieldLabelByKey = key => {
 		case 'full_name':
 			return text.fullName;
 		case 'address1':
-			return text.address1;
+			return text.shippingAddress;
 		case 'address2':
 			return text.address2;
 		case 'postal_code':
@@ -137,6 +137,8 @@ export const getFieldLabelByKey = key => {
 			return text.company;
 		case 'mobile':
 			return text.mobile;
+		case 'state':
+			return text.state;
 		case 'city':
 			return text.city;
 		case 'comments':
