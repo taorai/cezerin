@@ -13,6 +13,9 @@ const NewAndOldPrices = ({ newPrice, oldPrice, settings }) => (
 		<del className="product-old-price">
 			<FormattedCurrency settings={settings} number={oldPrice} />
 		</del>
+		<span className="product-discount-precentage">
+			{Math.ceil((oldPrice - newPrice) / oldPrice * 100)}% OFF
+		</span>
 	</div>
 );
 

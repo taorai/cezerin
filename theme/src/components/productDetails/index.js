@@ -114,6 +114,28 @@ export default class ProductDetails extends React.Component {
 					: selectedVariant
 						? selectedVariant.stock_quantity
 						: product.stock_quantity;
+		const ProductDetailContent = ({product}) => {
+			if (product.attributes && product.attributes.length > 0) {
+				return (
+					<div className="columns">
+						<div className="column is-7">
+							<Description description={product.description} />
+						</div>
+						<div className="column is-5">
+							<Attributes attributes={product.attributes} />
+						</div>
+					</div>
+				);	
+			} else {
+				return (
+					<div className="columns">
+						<div className="column is-12">
+							<Description description={product.description} />
+						</div>
+					</div>
+				);
+			}
+		};
 
 		if (product) {
 			return (
@@ -168,14 +190,10 @@ export default class ProductDetails extends React.Component {
 					<section className="section section-product-description">
 						<div className="container">
 							<div className="content">
-								<div className="columns">
-									<div className="column is-7">
-										<Description description={product.description} />
-									</div>
-									<div className="column is-5">
-										<Attributes attributes={product.attributes} />
-									</div>
-								</div>
+								
+									<ProductDetailContent
+										product={product}
+									/>
 							</div>
 						</div>
 					</section>
