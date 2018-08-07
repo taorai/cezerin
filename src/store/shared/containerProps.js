@@ -3,7 +3,7 @@ import { getJSONLD } from './lib/jsonld';
 import {
 	addCartItem,
 	deleteCartItem,
-	updateCartItemQuantiry,
+	updateCartItemQuantity,
 	fetchMoreProducts,
 	setSort,
 	fetchShippingMethods,
@@ -36,8 +36,12 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
 		deleteCartItem: item_id => {
 			dispatch(deleteCartItem(item_id));
 		},
-		updateCartItemQuantiry: (item_id, quantity) => {
-			dispatch(updateCartItemQuantiry(item_id, quantity));
+		updateCartItemQuantity: (item_id, quantity) => {
+			if (quantity == 0) {
+				dispatch(deleteCartItem(item_id));
+			} else {
+				dispatch(updateCartItemQuantity(item_id, quantity));
+			}
 		},
 		updateCart: (data, callback) => {
 			dispatch(updateCart(data, callback));

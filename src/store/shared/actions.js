@@ -131,11 +131,11 @@ export const addCartItem = item => async (dispatch, getState) => {
 
 const requestAddCartItem = () => ({ type: t.CART_ITEM_ADD_REQUEST });
 
-export const updateCartItemQuantiry = (item_id, quantity) => async (
+export const updateCartItemQuantity = (item_id, quantity) => async (
 	dispatch,
 	getState
 ) => {
-	dispatch(requestUpdateCartItemQuantiry());
+	dispatch(requestUpdateCartItemQuantity());
 	const response = await api.ajax.cart.updateItem(item_id, {
 		quantity: quantity
 	});
@@ -143,7 +143,7 @@ export const updateCartItemQuantiry = (item_id, quantity) => async (
 	dispatch(fetchShippingMethods());
 };
 
-const requestUpdateCartItemQuantiry = () => ({
+const requestUpdateCartItemQuantity = () => ({
 	type: t.CART_ITEM_UPDATE_REQUEST
 });
 
@@ -266,6 +266,7 @@ export const analyticsSetPaymentMethod = method_id => (dispatch, getState) => {
 export const updateCart = (data, callback) => async (dispatch, getState) => {
 	const response = await api.ajax.cart.update(data);
 	const newCart = response.json;
+
 	dispatch(receiveCart(newCart));
 	if (typeof callback === 'function') {
 		callback(newCart);
