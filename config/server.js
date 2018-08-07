@@ -1,9 +1,9 @@
 // config used by server side only
 const dbHost = process.env.DB_HOST || '127.0.0.1';
 const dbPort = process.env.DB_PORT || 27017;
-const dbName = process.env.DB_NAME || 'shop';
-const dbUser = process.env.DB_USER || 'taorai';
-const dbPass = process.env.DB_PASS || '1q2w3e4r';
+const dbName = process.env.DB_NAME || 'taorai_db';
+const dbUser = process.env.DB_USER || 'taorai_user';
+const dbPass = process.env.DB_PASS || '1qaz2WSX3edc4RFV';
 const dbCred =
 	dbUser.length > 0 || dbPass.length > 0 ? `${dbUser}:${dbPass}@` : '';
 
@@ -58,7 +58,7 @@ module.exports = {
 	themeAssetsUploadUrl: '/assets/images',
 
 	// store UI language
-	language: 'en',
+	language: 'th',
 
 	// used by API
 	orderStartNumber: 10000,
