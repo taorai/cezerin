@@ -97,7 +97,7 @@ class CheckoutStepContacts extends React.Component {
 					return text.city;
 					break;
 				case 'address1':
-					return text.shippingAddress;
+					return text.address1;
 					break;
 				case 'postal_code':
 					return text.postal_code;
@@ -177,7 +177,7 @@ class CheckoutStepContacts extends React.Component {
 					)}
 					{!this.isFieldHidden('address1') && (
 						<ReadOnlyField
-							name={text.shippingAddress}
+							name={text.address1}
 							value={initialValues.shipping_address.address1}
 						/>
 					)}
@@ -359,6 +359,7 @@ class CheckoutStepContacts extends React.Component {
 										validate={[validateRequired]}
 										component="input"
 										type="radio"
+										checked="true"
 										value={method.id}
 										onClick={() => saveShippingMethod(method.id)}
 									/>
@@ -371,6 +372,7 @@ class CheckoutStepContacts extends React.Component {
 									<span className="shipping-method-rate">
 										{formatCurrency(method.price, settings)}
 									</span>
+									{saveShippingMethod(method.id)}
 								</label>
 							))}
 						</div>

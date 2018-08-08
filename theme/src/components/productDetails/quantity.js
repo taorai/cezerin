@@ -7,7 +7,7 @@ export default class Quantity extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			quantity: 1
+			quantity: (this.props.defaultValue == null ? 1 : this.props.defaultValue)
 		};
 	}
 
@@ -23,7 +23,7 @@ export default class Quantity extends React.PureComponent {
 
 	setQuantity = quantity => {
 		const intQuantity = parseInt(quantity);
-		if (intQuantity > 0 && intQuantity <= this.props.maxQuantity) {
+		if ((intQuantity == 0 && this.props.defaultValue != null) || (intQuantity > 0 && intQuantity <= this.props.maxQuantity)) {
 			this.setState({ quantity: intQuantity });
 			this.props.onChange(intQuantity);
 		}
@@ -40,27 +40,46 @@ export default class Quantity extends React.PureComponent {
 	};
 
 	render() {
-		const { maxQuantity } = this.props;
+		const { maxQuantity, defaultValue } = this.props;
 		const { quantity } = this.state;
 		const disabled = maxQuantity === 0;
 		const value = disabled ? 0 : quantity;
 
-		return (
-			<Fragment>
-				<div>{text.qty}</div>
-				<div className="product-quantity">
-					<a className="decrement" onClick={this.decrement} />
-					<input
-						value={value}
-						onChange={this.handleChange}
-						maxLength="3"
-						type="number"
-						pattern="\d*"
-						disabled={disabled}
-					/>
-					<a className="increment" onClick={this.increment} />
-				</div>
-			</Fragment>
-		);
+		if (defaultValue == null) {
+			return (
+				<Fragment>
+					<div>{text.qty}</div>
+					<div className="product-quantity">
+						<a className="decrement" onClick={this.decrement} />
+						<input
+							value={value}
+							onChange={this.handleChange}
+							maxLength="3"
+							type="number"
+							pattern="\d*"
+							disabled={disabled}
+						/>
+						<a className="increment" onClick={this.increment} />
+					</div>
+				</Fragment>
+			);
+		} else {
+			return (
+				<Fragment>
+					<div className="product-quantity">
+						<a className="decrement" onClick={this.decrement} />
+						<input
+							value={value}
+							onChange={this.handleChange}
+							maxLength="3"
+							type="number"
+							pattern="\d*"
+							disabled={disabled}
+						/>
+						<a className="increment" onClick={this.increment} />
+					</div>
+				</Fragment>
+			);
+		}
 	}
 }

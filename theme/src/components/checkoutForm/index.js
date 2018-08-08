@@ -26,6 +26,9 @@ export default class CheckoutForm extends React.Component {
 	};
 
 	handleContactsEdit = () => {
+		this.props.updateCart({
+			note : ""
+		});
 		this.changeStep(1);
 	};
 
@@ -40,7 +43,8 @@ export default class CheckoutForm extends React.Component {
 	handleContactsSubmit = values => {
 		this.props.updateCart({
 			email: values.email,
-			mobile: values.mobile
+			mobile: values.mobile,
+			note : "disable_quantity"
 		});
 		this.handleContactsSave();
 	};
@@ -70,6 +74,7 @@ export default class CheckoutForm extends React.Component {
 			// 	this.props.loadPaymentMethods();
 			// }
 		);
+
 	};
 
 	handlePaymentMethodSave = paymentMethodId => {

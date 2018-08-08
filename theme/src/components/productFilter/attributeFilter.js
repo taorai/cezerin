@@ -71,12 +71,17 @@ const AttributeSet = ({
 		/>
 	));
 
-	return (
-		<div className="attribute">
-			<div className="attribute-title">{attribute.name}</div>
-			{values}
-		</div>
-	);
+	if (values.length > 1) {
+		return (
+			<div className="attribute">
+				<div className="attribute-title">{attribute.name}</div>
+				{values}
+			</div>
+		);		
+	} else {
+		return;
+	}
+
 };
 
 const AttributeFilter = ({

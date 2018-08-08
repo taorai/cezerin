@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { themeSettings, text } from '../lib/settings';
 import * as helper from '../lib/helper';
+import Quantity from './productDetails/quantity';
 
 const SummaryItem = ({
 	settings,
 	item,
 	deleteCartItem,
-	updateCartItemQuantiry
+	updateCartItemQuantity,
+	disable_quantity
 }) => {
 	const thumbnail = helper.getThumbnailUrl(
 		item.image_url,
@@ -29,46 +31,82 @@ const SummaryItem = ({
 		);
 	}
 
-	return (
-		<div className="columns is-mobile">
-			<div className="column is-3">
-				<div className="image">
-					<NavLink to={item.path}>
-						<img
-							className="product-image"
-							src={thumbnail}
-							alt={item.name}
-							title={item.name}
-						/>
-					</NavLink>
+	if (disable_quantity == "") {
+		return (
+			<div className="columns is-mobile">
+				<div className="column is-3">
+					<div className="image">
+						<NavLink to={item.path}>
+							<img
+								className="product-image"
+								src={thumbnail}
+								alt={item.name}
+								title={item.name}
+							/>
+						</NavLink>
+					</div>
 				</div>
-			</div>
-			<div className="column">
-				<div>
-					<NavLink to={item.path}>{item.name}</NavLink>
-				</div>
-				{item.variant_name.length > 0 && (
-					<div className="cart-option-name">{item.variant_name}</div>
-				)}
-				<div className="qty">
-					<span>{text.qty}:</span>
-					<span className="select is-small">
-						<select
+				<div className="column">
+					<div>
+						<NavLink to={item.path}>{item.name}</NavLink>
+					</div>
+					{item.variant_name.length > 0 && (
+						<div className="cart-option-name">{item.variant_name}</div>
+					)}
+					<div className="qty">
+						<span>{text.qty}:</span>
+					</div>
+					<div>
+						<Quantity
+							maxQuantity={maxQty}
+							defaultValue={item.quantity}
 							onChange={e => {
-								updateCartItemQuantiry(item.id, e.target.value);
+								item.quantity = e;
+								updateCartItemQuantity(item.id, e);
 							}}
-							value={item.quantity}
-						>
-							{qtyOptions}
-						</select>
-					</span>
+						/>
+					</div>
+				</div>
+				<div className="column is-3 has-text-right price">
+					{helper.formatCurrency(item.price_total, settings)}
+					
 				</div>
 			</div>
-			<div className="column is-3 has-text-right price">
-				{helper.formatCurrency(item.price_total, settings)}
+		);
+	} else {
+		return (
+			<div className="columns is-mobile">
+				<div className="column is-3">
+					<div className="image">
+						<NavLink to={item.path}>
+							<img
+								className="product-image"
+								src={thumbnail}
+								alt={item.name}
+								title={item.name}
+							/>
+						</NavLink>
+					</div>
+				</div>
+				<div className="column">
+					<div>
+						<NavLink to={item.path}>{item.name}</NavLink>
+					</div>
+					{item.variant_name.length > 0 && (
+						<div className="cart-option-name">{item.variant_name}</div>
+					)}
+					<div className="qty">
+						<span>{text.qty}:</span>
+						<span>{item.quantity}</span>
+					</div>
+				</div>
+				<div className="column is-3 has-text-right price">
+					{helper.formatCurrency(item.price_total, settings)}
+					
+				</div>
 			</div>
-		</div>
-	);
+		);		
+	}
 };
 
 const OrderSummary = props => {
@@ -80,8 +118,9 @@ const OrderSummary = props => {
 				key={item.id}
 				item={item}
 				deleteCartItem={props.deleteCartItem}
-				updateCartItemQuantiry={props.updateCartItemQuantiry}
+				updateCartItemQuantity={props.updateCartItemQuantity}
 				settings={settings}
+				disable_quantity={cart.note}
 			/>
 		));
 
