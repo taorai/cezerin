@@ -12,3 +12,28 @@ IMPORTANT NOTES:
    secure backup of this folder now. This configuration directory will
    also contain certificates and private keys obtained by Certbot so
    making regular backups of this folder is ideal.
+   
+   
+   
+   
+App ID
+2209781619245906
+App Secret
+5fbb060e94cf168e220a91f2a4e63309Reset
+Display Name
+
+taorai.asia
+Namespace
+
+taorai.asia
+App Domains
+https://taorai.asiaRemove
+Contact Email
+
+service@taorai.asia
+Privacy Policy URL
+
+https://taorai.asia/privacy-policy
+Terms of Service URL
+
+https://taorai.asia/payment-shipping

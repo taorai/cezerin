@@ -32,6 +32,8 @@
   "resultsFor": "ค้นหา",
   "selectOption": "Select",
   "optionsRequired": "You need to choose options",
+  "fb_chat_logged_in": "สวัสดีครับ!! Welcome to taorai.asia",
+  "fb_chat_logged_out": "สวัสดีครับ!! Welcome to taorai.asia",
   "shippingAddress": "ที่อยู่ในการจัดส่ง",
   "billingAddress": "Billing Address",
   "shippingMethod": "วิธีการจัดส่งสินค้า",
