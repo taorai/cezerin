@@ -91,7 +91,7 @@ const AddToCartButton = ({
 
 				<div 
 					class="fb-like" 
-					data-href="https://taorai.asia" 
+					data-href={window.location.href} 
 					data-layout="button" 
 					data-action="like" 
 					data-size="large" 
