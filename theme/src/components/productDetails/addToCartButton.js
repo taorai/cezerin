@@ -86,18 +86,6 @@ const AddToCartButton = ({
 				  logged_in_greeting={text.fb_chat_logged_in}
 				  logged_out_greeting={text.fb_chat_logged_out}>
 				</div>
-
-				<br/>
-
-				<div 
-					class="fb-like" 
-					data-href="https://taorai.asis/"
-					data-layout="button" 
-					data-action="like" 
-					data-size="large" 
-					data-show-faces="false" 
-					data-share="true">
-				</div>
 			</div>
 		);
 	} else if (product.stock_status === 'out_of_stock') {

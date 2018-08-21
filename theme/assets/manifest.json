@@ -18,6 +18,10 @@
     "sizes": "128x128",
     "type": "image/png"
   },{
+    "src": "/assets/images/icons/LOGO_192_192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  },{
     "src": "/assets/images/icons/LOGO_256_256.png",
     "sizes": "256x256",
     "type": "image/png"
