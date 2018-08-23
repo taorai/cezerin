@@ -46,7 +46,7 @@ const Item = ({
 				product.stock_status
 			}`}
 		>
-			<NavLink to={product.path}>
+			<NavLink to={product.path} target="_blank">
 				<figure className="image" style={{ height: imageHeight }}>
 					<ItemTags tags={product.tags} />
 					<ItemImage

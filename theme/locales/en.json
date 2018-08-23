@@ -32,6 +32,8 @@
   "resultsFor": "Results for",
   "selectOption": "Select",
   "optionsRequired": "You need to choose options",
+  "fb_chat_logged_in": "Welcome to taorai.asia",
+  "fb_chat_logged_out": "Welcome to taorai.asia",
   "shippingAddress": "Shipping Address",
   "billingAddress": "Billing Address",
   "shippingMethod": "Shipping method",

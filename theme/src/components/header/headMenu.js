@@ -33,19 +33,18 @@ class HeadMenuItem extends React.Component {
 
 	render() {
 		const { categories, category, onClick, level, isMobile } = this.props;
-		const items = categories
-			.filter(item => item.parent_id === category.id)
-			.map((subcategory, index) => (
-				<HeadMenuItem
-					key={index}
-					category={subcategory}
-					onClick={onClick}
-					categories={categories}
-					level={level + 1}
-					isMobile={isMobile}
-				/>
-			));
-		const hasItems = items.length > 0;
+		const category_list = categories.filter(item => item.parent_id === category.id);
+		const hasItems = category_list.length > 0;
+		const items = category_list.map((subcategory, index) => (
+			<HeadMenuItem
+				key={index}
+				category={subcategory}
+				onClick={onClick}
+				categories={categories}
+				level={level + 1}
+				isMobile={isMobile}
+			/>
+		));
 
 		return (
 			<li
@@ -63,7 +62,7 @@ class HeadMenuItem extends React.Component {
 						activeClassName="is-active"
 						className={hasItems ? 'has-items' : ''}
 						to={category.path}
-						onClick={onClick}
+						onClick={hasItems && isMobile ? this.isActiveToggle : onClick}
 					>
 						{category.name}
 					</NavLink>
@@ -105,7 +104,7 @@ export default class HeadMenu extends React.PureComponent {
 				<HeadMenuItem
 					key={index}
 					category={category}
-					onClick={onClick}
+					onClick={isMobile ? this.isActiveToggle : onClick}
 					categories={categories}
 					level={1}
 					isMobile={isMobile}

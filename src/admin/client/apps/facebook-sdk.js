@@ -22,18 +22,19 @@ export const Description = {
 const FACEBOOK_CODE = `<script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId            : 'YOUR_APP_ID',
-      autoLogAppEvents : true,
-      xfbml            : true,
-      version          : 'v2.11'
+      appId      : 'YOUR_APP_ID',
+      xfbml      : true,
+      autoLogAppEvents: true,
+      version    : 'v2.12'
     });
+    FB.AppEvents.logPageView();
   };
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/YOUR_LOCALE/sdk.js";
+     js.src = "https://connect.facebook.net/YOUR_LOCALE/sdk/xfbml.customerchat.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>`;
@@ -42,8 +43,8 @@ export class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			appId: '',
-			locale: 'en_US'
+			appId: '2209781619245906',
+			locale: 'th_TH'
 		};
 	}
 

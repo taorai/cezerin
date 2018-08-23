@@ -66,7 +66,7 @@ class SwitchContainers extends React.Component {
 					return <PageContainer />;
 				}
 			default:
-				return <NotFoundContainer />;
+				return <IndexContainer />;
 		}
 	}
 }
