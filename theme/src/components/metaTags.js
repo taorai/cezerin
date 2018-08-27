@@ -93,7 +93,7 @@ const MetaTags = ({
 		});
 	}
 
-	if (productPriceAmount && productPriceAmount.length > 0) {
+	if (productPriceAmount && productPriceAmount > 0) {
 		metaArray.push({
 			property: 'product:price:amount',
 			content: productPriceAmount
