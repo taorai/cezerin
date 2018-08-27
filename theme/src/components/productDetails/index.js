@@ -139,6 +139,7 @@ export default class ProductDetails extends React.Component {
 
 		if (product) {
 			return (
+				
 				<Fragment>
 					<section className="section section-product">
 						<div className="container">
