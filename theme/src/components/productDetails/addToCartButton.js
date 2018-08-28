@@ -78,14 +78,6 @@ const AddToCartButton = ({
 				>
 					{addToCartText}
 				</button>
-
-				<br/>
-
-				<div class="fb-customerchat"
-				  page_id="713056795569271"
-				  logged_in_greeting={text.fb_chat_logged_in}
-				  logged_out_greeting={text.fb_chat_logged_out}>
-				</div>
 			</div>
 		);
 	} else if (product.stock_status === 'out_of_stock') {
