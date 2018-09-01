@@ -27,6 +27,12 @@ const ProductContainer = props => {
 					ogType="product"
 					ogTitle={productDetails.name}
 					ogDescription={productDetails.meta_description}
+					productBrand="taorai.asia"
+					productAvailability="preorder"
+					productCondition="new"
+					productPriceAmount={productDetails.sale_price}
+					productPriceCurrency="THB"
+					productRetailerItemId={productDetails.sku}
 					jsonld={jsonld}
 				/>
 

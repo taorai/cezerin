@@ -75,7 +75,7 @@ const getProduct = (product, settings) => {
 			price: product.price,
 			availability:
 				product.stock_status === 'available'
-					? 'http://schema.org/InStock'
+					? 'http://schema.org/PreOrder'
 					: 'http://schema.org/OutOfStock'
 		}
 	};

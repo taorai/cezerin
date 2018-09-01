@@ -9,6 +9,12 @@ const MetaTags = ({
 	ogType,
 	ogTitle,
 	ogDescription,
+	productBrand,
+	productAvailability,
+	productCondition,
+	productPriceAmount,
+	productPriceCurrency,
+	productRetailerItemId,
 	jsonld
 }) => {
 	let metaArray = [];
@@ -63,6 +69,48 @@ const MetaTags = ({
 		metaArray.push({
 			property: 'og:description',
 			content: ogDescription
+		});
+	}
+
+	if (productBrand && productBrand.length > 0) {
+		metaArray.push({
+			property: 'product:brand',
+			content: productBrand
+		});
+	}
+
+	if (productAvailability && productAvailability.length > 0) {
+		metaArray.push({
+			property: 'product:availability',
+			content: productAvailability
+		});
+	}
+
+	if (productCondition && productCondition.length > 0) {
+		metaArray.push({
+			property: 'product:condition',
+			content: productCondition
+		});
+	}
+
+	if (productPriceAmount && productPriceAmount > 0) {
+		metaArray.push({
+			property: 'product:price:amount',
+			content: productPriceAmount
+		});
+	}
+
+	if (productPriceCurrency && productPriceCurrency.length > 0) {
+		metaArray.push({
+			property: 'product:price:currency',
+			content: productPriceCurrency
+		});
+	}
+
+	if (productRetailerItemId && productRetailerItemId.length > 0) {
+		metaArray.push({
+			property: 'product:retailer_item_id',
+			content: productRetailerItemId
 		});
 	}
 

@@ -75,6 +75,7 @@ export default class Cart extends React.PureComponent {
 						style={{ textTransform: 'uppercase' }}
 						to="/checkout"
 						onClick={cartToggle}
+						target="_blank"
 					>
 						{text.proceedToCheckout}
 					</NavLink>

@@ -87,8 +87,16 @@ const renderPage = (req, res, store, themeText, placeholders) => {
 	const state = store.getState();
 	const head = getHead();
 	const placeholder = getPlaceholder(placeholders);
+	let facebook_script = "";
+
+	if (appHtml.indexOf('section-product-description') >= 1) {
+		facebook_script = "<script>fbq('track', 'ViewContent');</script>"
+	} else if (appHtml.indexOf('section-checkout') >= 1 && appHtml.indexOf('checkout-success-details') < 0) {
+		facebook_script = "<script>fbq('track', 'AddToCart');</script>"
+	} 
 
 	const html = indexHtml
+		.replace('{placeholder_facebook_pixel_event}', facebook_script)
 		.replace('{placeholder_head_start}', placeholder.head_start)
 		.replace('{placeholder_head_end}', placeholder.head_end)
 		.replace('{placeholder_body_start}', placeholder.body_start)
