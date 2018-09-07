@@ -71,13 +71,13 @@ const AddToCartButton = ({
 	} else if (product.stock_status === 'available') {
 		return (
 			<div>
-				<button
-					className="button is-success is-fullwidth"
-					style={buttonStyle}
-					onClick={addCartItem}
-				>
+				<a 
+					type="button" 
+					href="https://line.naver.jp/ti/p/Lwczcee26q" 
+					target="_blank" 
+					class="button is-success is-fullwidth">
 					{addToCartText}
-				</button>
+				</a>
 			</div>
 		);
 	} else if (product.stock_status === 'out_of_stock') {
