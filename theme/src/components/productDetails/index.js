@@ -170,10 +170,6 @@ export default class ProductDetails extends React.Component {
 											options={product.options}
 											onChange={this.onOptionChange}
 										/>
-										<Quantity
-											maxQuantity={maxQuantity}
-											onChange={this.setQuantity}
-										/>
 										<div className="button-addtocart">
 											<AddToCartButton
 												product={product}
